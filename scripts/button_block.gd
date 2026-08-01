@@ -41,11 +41,15 @@ func on_tower_updated(new_index: int) -> void:
 						func():
 							visual_state = VisualState.RIGHT
 							sprite.texture = load("res://assets/buttonblock/right.tres")
+							
 							sprite.visible = true
 							button_animation.visible = false
 							Events.all_animation_finished.emit()
 					)
-
+				VisualState.RIGHT:
+					sprite.texture = load("res://assets/buttonblock/stage2.tres")
+					if tower_manager != null and block_index >= 0:
+						tower_manager.notify_block_height_changed(block_index)
 				_:
 					print("Button Oopsy")
 				

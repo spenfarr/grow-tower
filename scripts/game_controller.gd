@@ -17,6 +17,8 @@ func _ready() -> void:
 	cannon_button.pressed.connect(_on_block_button_pressed.bind("cannon"))
 	Events.all_animation_finished.connect(_on_all_animations_finished)
 	set_block_buttons_disabled(false)
+	# Give the tower manager access to the container so it can reposition blocks
+	tower_manager.tower_container = tower_container
 
 func _on_block_button_pressed(block_name: String) -> void:
 	if red_button.disabled or cannon_button.disabled:
