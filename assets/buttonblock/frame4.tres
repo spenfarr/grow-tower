@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://d11eg7cj1fuft"]
+
+[ext_resource type="Texture2D" uid="uid://vav2uvxafqtq" path="res://assets/buttonblock/raw_art/Untitled_Artwork-2.png" id="1_pegee"]
+
+[resource]
+atlas = ExtResource("1_pegee")
+region = Rect2(1451, 2320, 288, 274)

@@ -1,0 +1,57 @@
+extends Area2D
+class_name Block
+
+signal interacted(with_block: Block)
+
+@export var block_name: String = "Block"
+@export var block_color: Color = Color.WHITE
+@export var growth_amount: int = 1
+@export var texture_path: String = "res://assets/buttonblock/frame1.tres"
+
+var id: int = 0
+var is_active: bool = false
+var neighbors: Array[Block] = []
+
+func _ready() -> void:
+	update_visuals()
+	area_entered.connect(_on_area_entered)
+
+func setup(name_value: String, color_value: Color, growth_value: int = 1, texture_value: String = "res://assets/buttonblock/frame1.tres") -> void:
+	block_name = name_value
+	block_color = color_value
+	growth_amount = growth_value
+	texture_path = texture_value
+	update_visuals()
+
+func trigger_interaction(other_block: Block) -> void:
+	if other_block == null or other_block == self:
+		return
+
+	if other_block in neighbors:
+		return
+
+	neighbors.append(other_block)
+	emit_signal("interacted", other_block)
+	apply_growth()
+
+func apply_growth() -> void:
+	is_active = true
+	if $AnimationPlayer.has_animation("grow"):
+		$AnimationPlayer.play("grow")
+
+func update_visuals() -> void:
+	if has_node("Sprite2D"):
+		$Sprite2D.modulate = block_color
+		if ResourceLoader.exists(texture_path):
+			$Sprite2D.texture = load(texture_path)
+
+func get_visual_height() -> float:
+	if has_node("Sprite2D"):
+		var sprite: Sprite2D = $Sprite2D
+		if sprite.texture != null:
+			return sprite.texture.get_size().y * sprite.scale.y
+	return 32.0
+
+func _on_area_entered(area: Area2D) -> void:
+	if area is Block and area != self:
+		trigger_interaction(area as Block)

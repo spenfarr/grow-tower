@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://b1c2p7m4yaq03"]
+
+[ext_resource type="Script" uid="uid://buwuhnnw6hdpf" path="res://scripts/game_controller.gd" id="1_abc123"]
+[ext_resource type="Script" uid="uid://cndo8lg1ol0x2" path="res://scripts/tower_manager.gd" id="2_def456"]
+
+[node name="Game" type="Node2D" unique_id=870439187]
+script = ExtResource("1_abc123")
+
+[node name="Background" type="ColorRect" parent="." unique_id=729034195]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.12, 0.15, 0.2, 1)
+
+[node name="Ground" type="ColorRect" parent="." unique_id=1495880131]
+offset_top = 520.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.3, 0.18, 0.1, 1)
+
+[node name="TowerContainer" type="Node2D" parent="." unique_id=1821056860]
+position = Vector2(576, 100)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1750925011]
+
+[node name="MarginContainer" type="MarginContainer" parent="UI" unique_id=1178252820]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Buttons" type="VBoxContainer" parent="UI/MarginContainer" unique_id=548064411]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+alignment = 1
+
+[node name="RedButton" type="Button" parent="UI/MarginContainer/Buttons" unique_id=614787830]
+custom_minimum_size = Vector2(180, 48)
+layout_mode = 2
+text = "red_button"
+
+[node name="CannonButton" type="Button" parent="UI/MarginContainer/Buttons" unique_id=614787831]
+custom_minimum_size = Vector2(180, 48)
+layout_mode = 2
+text = "cannon"
+
+[node name="TowerManager" type="Node" parent="." unique_id=1734260407]
+script = ExtResource("2_def456")
