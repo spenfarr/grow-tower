@@ -62,6 +62,23 @@ animations = [{
 "loop": 0,
 "name": &"turn_left_270",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ghi789")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_def456")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_hpho0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5yrtf")
+}],
+"loop": 0,
+"name": &"turn_right",
+"speed": 5.0
 }]
 
 [node name="ButtonBlock" type="Area2D" unique_id=1742133317]
@@ -75,4 +92,4 @@ texture = ExtResource("1_def456")
 visible = false
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_1")
-animation = &"turn_left_270"
+animation = &"turn_right"

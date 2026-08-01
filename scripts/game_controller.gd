@@ -15,8 +15,12 @@ const BLOCK_DEFINITIONS: Array[Dictionary] = [
 func _ready() -> void:
 	red_button.pressed.connect(_on_block_button_pressed.bind("red_button"))
 	cannon_button.pressed.connect(_on_block_button_pressed.bind("cannon"))
+	Events.all_animation_finished.connect(_on_all_animations_finished)
+	set_block_buttons_disabled(false)
 
 func _on_block_button_pressed(block_name: String) -> void:
+	if red_button.disabled or cannon_button.disabled:
+		return
 	spawn_block(block_name)
 
 func spawn_block(block_name: String) -> void:
@@ -34,6 +38,7 @@ func spawn_block(block_name: String) -> void:
 		block_scene = preload("res://scenes/block.tscn")
 		block = block_scene.instantiate() as Block
 
+	set_block_buttons_disabled(true)
 	block.tower_manager = tower_manager
 	block.setup(definition["name"], Color.WHITE, definition["growth"], definition["texture"])
 	var block_height: float = block.get_visual_height()
@@ -44,6 +49,13 @@ func spawn_block(block_name: String) -> void:
 
 	tower_manager.add_block(block)
 	current_sequence.append(block_name)
+
+func _on_all_animations_finished() -> void:
+	set_block_buttons_disabled(false)
+
+func set_block_buttons_disabled(disabled: bool) -> void:
+	red_button.disabled = disabled
+	cannon_button.disabled = disabled
 
 func get_block_definition(block_name: String) -> Dictionary:
 	for definition in BLOCK_DEFINITIONS:
