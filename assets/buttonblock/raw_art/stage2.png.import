@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vav2uvxafqtq"
-path="res://.godot/imported/Untitled_Artwork-2.png-d144088c0b6e6b74b6755700dac19406.ctex"
+uid="uid://cdnvrwifcvtxe"
+path="res://.godot/imported/stage2.png-8ec99440dc31c0f9e594f4d42e608592.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/buttonblock/raw_art/Untitled_Artwork-2.png"
-dest_files=["res://.godot/imported/Untitled_Artwork-2.png-d144088c0b6e6b74b6755700dac19406.ctex"]
+source_file="res://assets/buttonblock/raw_art/stage2.png"
+dest_files=["res://.godot/imported/stage2.png-8ec99440dc31c0f9e594f4d42e608592.ctex"]
 
 [params]
 

@@ -10,24 +10,22 @@ enum VisualState {
 
 var visual_state: VisualState = VisualState.FRONT
 
+@onready var button_animation : AnimatedSprite2D = $ButtonAnimation as AnimatedSprite2D
+
 func _ready() -> void:
 	super._ready()
 
 func on_tower_updated(new_index: int) -> void:
 	if new_index > block_index:
-		if has_node("buttonturningleft270"):
+		if button_animation:
 			visual_state = VisualState.LEFT
-			$buttonturningleft270.visible = true
+			button_animation.visible = true
 			$Sprite2D.visible = false
-			$buttonturningleft270.play("turn_left")
-			$buttonturningleft270.animation_finished.connect(
+			button_animation.play("turn_left_270")
+			button_animation.animation_finished.connect(
 				func():
 					visual_state = VisualState.EXTENDED
-					$Sprite2D.texture = load("res://assets/buttonblock/frame3.tres")
+					$Sprite2D.texture = load("res://assets/buttonblock/left.tres")
 					$Sprite2D.visible = true
-					$buttonturningleft270.visible = false
+					button_animation.visible = false
 			)
-			
-func _on_buttonturningleft_270_frame_changed() -> void:
-	if $buttonturningleft270.frame >= 5: # 6th frame, 0-indexed
-		$buttonturningleft270.flip_h = false
