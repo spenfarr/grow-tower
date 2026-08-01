@@ -50,4 +50,5 @@ layout_mode = 2
 text = "cannon"
 
 [node name="TowerManager" type="Node" parent="." unique_id=1734260407]
+unique_name_in_owner = true
 script = ExtResource("2_def456")

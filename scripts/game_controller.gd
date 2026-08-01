@@ -27,10 +27,12 @@ func spawn_block(block_name: String) -> void:
 	var block_scene: PackedScene = preload("res://scenes/block.tscn")
 	var block: Block = block_scene.instantiate() as Block
 
+	block.tower_manager = tower_manager	
 	block.setup(definition["name"], Color.WHITE, definition["growth"], definition["texture"])
 	var block_height: float = block.get_visual_height()
 	var new_y: float = tower_manager.get_next_spawn_y(block_height)
 	block.position = Vector2(0, new_y)
+	
 	tower_container.add_child(block)
 
 	tower_manager.add_block(block)

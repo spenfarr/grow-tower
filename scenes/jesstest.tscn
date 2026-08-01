@@ -35,7 +35,8 @@ animations = [{
 position = Vector2(704, 598.2895)
 scale = Vector2(0.34586465, 0.34586465)
 sprite_frames = SubResource("SpriteFrames_frbwu")
-frame_progress = 0.86692685
+frame = 3
+frame_progress = 0.16851027
 
 [node name="stack" type="Sprite2D" parent="." unique_id=742985021]
 position = Vector2(-518, -394)

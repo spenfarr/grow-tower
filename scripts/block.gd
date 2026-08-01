@@ -11,10 +11,16 @@ signal interacted(with_block: Block)
 var id: int = 0
 var is_active: bool = false
 var neighbors: Array[Block] = []
+var tower_manager: TowerManager
+var block_index: int = -1
 
 func _ready() -> void:
 	update_visuals()
 	area_entered.connect(_on_area_entered)
+
+	#var tower_manager: TowerManager = %TowerManager as TowerManager
+	if tower_manager:
+		tower_manager.tower_updated.connect(_on_tower_updated)
 
 func setup(name_value: String, color_value: Color, growth_value: int = 1, texture_value: String = "res://assets/buttonblock/frame1.tres") -> void:
 	block_name = name_value
@@ -22,6 +28,10 @@ func setup(name_value: String, color_value: Color, growth_value: int = 1, textur
 	growth_amount = growth_value
 	texture_path = texture_value
 	update_visuals()
+
+	print(tower_manager != null)
+	if tower_manager != null:
+		block_index = tower_manager.blocks.size()
 
 func trigger_interaction(other_block: Block) -> void:
 	if other_block == null or other_block == self:
@@ -55,3 +65,12 @@ func get_visual_height() -> float:
 func _on_area_entered(area: Area2D) -> void:
 	if area is Block and area != self:
 		trigger_interaction(area as Block)
+
+func _on_tower_updated(new_index: int) -> void:
+	if new_index > block_index:
+		print(block_index, "lower", new_index)
+	on_tower_updated(new_index)
+
+func on_tower_updated(new_index: int) -> void:
+	# Override in subclasses for per-block reaction to tower updates.
+	pass
