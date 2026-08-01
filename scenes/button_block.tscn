@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://b2c4d6e8f0a1b"]
+
+[ext_resource type="Script" uid="uid://ck6af3y2ci3hq" path="res://scripts/button_block.gd" id="1_abc123"]
+[ext_resource type="Texture2D" uid="uid://do28t20nvb2ew" path="res://assets/buttonblock/frame1.tres" id="1_def456"]
+[ext_resource type="Texture2D" uid="uid://5rcu3neukgf6" path="res://assets/buttonblock/frame2.tres" id="2_ghi789"]
+[ext_resource type="Texture2D" uid="uid://cogxdwtxkl1lx" path="res://assets/buttonblock/frame3.tres" id="3_jkl012"]
+[ext_resource type="Texture2D" uid="uid://d11eg7cj1fuft" path="res://assets/buttonblock/frame4.tres" id="4_mno345"]
+[ext_resource type="Texture2D" uid="uid://b52iknys58hbw" path="res://assets/buttonblock/frame5.tres" id="5_pqr678"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_def456")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ghi789")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jkl012")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mno345")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pqr678")
+}],
+"loop": 0,
+"name": &"turn_left",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_updvd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_def456")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ghi789")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jkl012")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mno345")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pqr678")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mno345")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jkl012")
+}],
+"loop": 0,
+"name": &"turn_left",
+"speed": 5.0
+}]
+
+[node name="ButtonBlock" type="Area2D" unique_id=1742133317]
+script = ExtResource("1_abc123")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=307858642]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_def456")
+
+[node name="buttonturningleft" type="AnimatedSprite2D" parent="." unique_id=1544989129]
+visible = false
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_1")
+animation = &"turn_left"
+frame = 3
+
+[node name="buttonturningleft270" type="AnimatedSprite2D" parent="." unique_id=242208577]
+visible = false
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_updvd")
+animation = &"turn_left"
+frame = 6
+frame_progress = 1.0
+flip_h = true
+
+[connection signal="frame_changed" from="buttonturningleft270" to="." method="_on_buttonturningleft_270_frame_changed"]

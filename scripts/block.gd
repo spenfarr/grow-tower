@@ -29,7 +29,6 @@ func setup(name_value: String, color_value: Color, growth_value: int = 1, textur
 	texture_path = texture_value
 	update_visuals()
 
-	print(tower_manager != null)
 	if tower_manager != null:
 		block_index = tower_manager.blocks.size()
 
@@ -67,8 +66,6 @@ func _on_area_entered(area: Area2D) -> void:
 		trigger_interaction(area as Block)
 
 func _on_tower_updated(new_index: int) -> void:
-	if new_index > block_index:
-		print(block_index, "lower", new_index)
 	on_tower_updated(new_index)
 
 func on_tower_updated(new_index: int) -> void:
