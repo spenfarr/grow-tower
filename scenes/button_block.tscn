@@ -88,7 +88,7 @@ script = ExtResource("1_abc123")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_def456")
 
-[node name="ButtonAnimation" type="AnimatedSprite2D" parent="." unique_id=1544989129]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1544989129]
 visible = false
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_1")

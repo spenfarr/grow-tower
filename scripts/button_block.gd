@@ -10,15 +10,10 @@ enum VisualState {
 
 var visual_state: VisualState = VisualState.FRONT
 
-@onready var button_animation: AnimatedSprite2D = $ButtonAnimation as AnimatedSprite2D
-@onready var sprite: Sprite2D = $Sprite2D as Sprite2D
-@onready var events: Node = get_node("/root/Events")
-
 func _ready() -> void:
 	super._ready()
 
 func on_tower_updated(new_index: int) -> void:
-	print(block_index)
 	if new_index > block_index:
 		if button_animation:
 			match visual_state:
@@ -32,7 +27,7 @@ func on_tower_updated(new_index: int) -> void:
 							sprite.texture = load("res://assets/buttonblock/frames/left.tres")
 							sprite.visible = true
 							button_animation.visible = false
-							events.all_animation_finished.emit()
+							Events.all_animation_finished.emit()
 					)
 				VisualState.LEFT:
 					button_animation.visible = true
@@ -45,16 +40,19 @@ func on_tower_updated(new_index: int) -> void:
 							
 							sprite.visible = true
 							button_animation.visible = false
-							events.all_animation_finished.emit()
+							Events.all_animation_finished.emit()
 					)
 				VisualState.RIGHT:
 					sprite.texture = load("res://assets/buttonblock/frames/stage2.tres")
+					visual_state = VisualState.EXTENDED
 					sprite.offset = Vector2(-50,0)
 					if tower_manager != null and block_index >= 0:
 						tower_manager.notify_block_height_changed(block_index)
+					Events.all_animation_finished.emit()
 				_:
 					print("Button Oopsy")
+					Events.all_animation_finished.emit()
 				
 	if new_index == block_index:
-		events.all_animation_finished.emit()
+		Events.all_animation_finished.emit()
 			
