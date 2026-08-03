@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c7eo5r04whyi6"]
 
 [ext_resource type="Texture2D" uid="uid://bswxesnsbsag3" path="res://assets/Untitled_Artwork-4.png" id="1_vfg66"]
-[ext_resource type="Texture2D" uid="uid://dtalr3wt65oaw" path="res://assets/cannonblock/cannon_sheet.png" id="2_4sw4g"]
+[ext_resource type="Texture2D" uid="uid://dtalr3wt65oaw" path="res://assets/cannonblock/raw_art/cannon_sheet.png" id="2_4sw4g"]
 
 [sub_resource type="Gradient" id="Gradient_nlgja"]
 offsets = PackedFloat32Array(0.9879518, 1)

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dm7l8x4d7p5v2"]
 
 [ext_resource type="Script" uid="uid://kgn4rs6tc3ih" path="res://scripts/block.gd" id="1_7z4f3b"]
-[ext_resource type="Texture2D" uid="uid://do28t20nvb2ew" path="res://assets/buttonblock/front.tres" id="1_abc123"]
+[ext_resource type="Texture2D" uid="uid://do28t20nvb2ew" path="res://assets/buttonblock/frames/front.tres" id="1_abc123"]
 
 [node name="Block" type="Area2D" unique_id=1978303013]
 script = ExtResource("1_7z4f3b")

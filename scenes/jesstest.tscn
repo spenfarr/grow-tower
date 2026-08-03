@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://kxwqc5sv0m74"]
 
-[ext_resource type="Texture2D" uid="uid://do28t20nvb2ew" path="res://assets/buttonblock/front.tres" id="1_rmtex"]
-[ext_resource type="Texture2D" uid="uid://5rcu3neukgf6" path="res://assets/buttonblock/front_left.tres" id="2_2ml50"]
-[ext_resource type="Texture2D" uid="uid://cogxdwtxkl1lx" path="res://assets/buttonblock/left.tres" id="3_awr8j"]
-[ext_resource type="Texture2D" uid="uid://d11eg7cj1fuft" path="res://assets/buttonblock/back_angle.tres" id="4_r6cd0"]
-[ext_resource type="Texture2D" uid="uid://b52iknys58hbw" path="res://assets/buttonblock/back.tres" id="5_s556d"]
-[ext_resource type="Texture2D" uid="uid://c764uwfvvvfrf" path="res://assets/buttonblock/stage2.tres" id="6_alk60"]
+[ext_resource type="Texture2D" uid="uid://do28t20nvb2ew" path="res://assets/buttonblock/frames/front.tres" id="1_rmtex"]
+[ext_resource type="Texture2D" uid="uid://5rcu3neukgf6" path="res://assets/buttonblock/frames/front_left.tres" id="2_2ml50"]
+[ext_resource type="Texture2D" uid="uid://cogxdwtxkl1lx" path="res://assets/buttonblock/frames/left.tres" id="3_awr8j"]
+[ext_resource type="Texture2D" uid="uid://d11eg7cj1fuft" path="res://assets/buttonblock/frames/back_angle.tres" id="4_r6cd0"]
+[ext_resource type="Texture2D" uid="uid://b52iknys58hbw" path="res://assets/buttonblock/frames/back.tres" id="5_s556d"]
+[ext_resource type="Texture2D" uid="uid://c764uwfvvvfrf" path="res://assets/buttonblock/frames/stage2.tres" id="6_alk60"]
 [ext_resource type="Script" uid="uid://omeospoqcgrs" path="res://scenes/stack.gd" id="7_2ml50"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_frbwu"]

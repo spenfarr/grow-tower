@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c28kifdtt4bcs"
-path="res://.godot/imported/Untitled_Artwork-1.png-acb62c5b870764f4824ae3d63f003ef2.ctex"
+uid="uid://dtalr3wt65oaw"
+path="res://.godot/imported/cannon_sheet.png-f75cb963482a341e453745e7426a8c40.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/buttonblock/Untitled_Artwork-1.png"
-dest_files=["res://.godot/imported/Untitled_Artwork-1.png-acb62c5b870764f4824ae3d63f003ef2.ctex"]
+source_file="res://assets/cannonblock/raw_art/cannon_sheet.png"
+dest_files=["res://.godot/imported/cannon_sheet.png-f75cb963482a341e453745e7426a8c40.ctex"]
 
 [params]
 

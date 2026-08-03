@@ -8,8 +8,8 @@ extends Node2D
 var current_sequence: Array[String] = []
 
 const BLOCK_DEFINITIONS: Array[Dictionary] = [
-	{"name": "red_button", "growth": 1, "texture": "res://assets/buttonblock/frame1.tres"},
-	{"name": "cannon", "growth": 2, "texture": "res://assets/cannonblock/cannon_base.tres"},
+	{"name": "red_button", "growth": 1, "texture": "res://assets/buttonblock/frames/front.tres"},
+	{"name": "cannon", "growth": 2, "texture": "res://assets/cannonblock/frames/cannon_base.tres"},
 ]
 
 func _ready() -> void:

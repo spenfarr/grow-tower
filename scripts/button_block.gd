@@ -28,7 +28,7 @@ func on_tower_updated(new_index: int) -> void:
 					button_animation.animation_finished.connect(
 						func():
 							visual_state = VisualState.LEFT
-							sprite.texture = load("res://assets/buttonblock/left.tres")
+							sprite.texture = load("res://assets/buttonblock/frames/left.tres")
 							sprite.visible = true
 							button_animation.visible = false
 							Events.all_animation_finished.emit()
@@ -40,14 +40,14 @@ func on_tower_updated(new_index: int) -> void:
 					button_animation.animation_finished.connect(
 						func():
 							visual_state = VisualState.RIGHT
-							sprite.texture = load("res://assets/buttonblock/right.tres")
+							sprite.texture = load("res://assets/buttonblock/frames/right.tres")
 							
 							sprite.visible = true
 							button_animation.visible = false
 							Events.all_animation_finished.emit()
 					)
 				VisualState.RIGHT:
-					sprite.texture = load("res://assets/buttonblock/stage2.tres")
+					sprite.texture = load("res://assets/buttonblock/frames/stage2.tres")
 					if tower_manager != null and block_index >= 0:
 						tower_manager.notify_block_height_changed(block_index)
 				_:
