@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://d2tb04ob631ou"]
+
+[ext_resource type="Texture2D" uid="uid://dtalr3wt65oaw" path="res://assets/cannonblock/raw_art/cannon_sheet.png" id="1_axuh5"]
+
+[resource]
+atlas = ExtResource("1_axuh5")
+region = Rect2(1374, 2240, 384, 269)
