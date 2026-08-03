@@ -3,22 +3,33 @@
 [ext_resource type="Script" uid="uid://xfrhushvnb0y" path="res://scripts/cannon_block.gd" id="1_abc123"]
 [ext_resource type="Texture2D" uid="uid://du4bl4a3bx0ye" path="res://assets/cannonblock/frames/cannon_base.tres" id="1_def456"]
 [ext_resource type="Texture2D" uid="uid://d2tb04ob631ou" path="res://assets/cannonblock/frames/cannon_guy.tres" id="3_jkl012"]
+[ext_resource type="Texture2D" uid="uid://bqx7lsvwk3pc7" path="res://assets/cannonblock/frames/mouth_closing.tres" id="4_5pmpx"]
 [ext_resource type="Texture2D" uid="uid://c461lsad7hi42" path="res://assets/cannonblock/frames/mouth_open.tres" id="4_mno345"]
+[ext_resource type="Texture2D" uid="uid://ct6oawmroj7j6" path="res://assets/cannonblock/frames/mouth_closed.tres" id="5_6jqyk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_jkl012")
+"texture": ExtResource("1_def456")
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_mno345")
 }, {
 "duration": 1.0,
+"texture": ExtResource("4_5pmpx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6jqyk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_def456")
+}, {
+"duration": 1.0,
 "texture": ExtResource("3_jkl012")
 }],
 "loop": 0,
-"name": &"aim",
+"name": &"eat",
 "speed": 5.0
 }]
 
@@ -33,4 +44,4 @@ texture = ExtResource("1_def456")
 visible = false
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_1")
-animation = &"aim"
+animation = &"eat"

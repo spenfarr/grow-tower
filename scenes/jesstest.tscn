@@ -5,8 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://cogxdwtxkl1lx" path="res://assets/buttonblock/frames/left.tres" id="3_awr8j"]
 [ext_resource type="Texture2D" uid="uid://d11eg7cj1fuft" path="res://assets/buttonblock/frames/back_angle.tres" id="4_r6cd0"]
 [ext_resource type="Texture2D" uid="uid://b52iknys58hbw" path="res://assets/buttonblock/frames/back.tres" id="5_s556d"]
-[ext_resource type="Texture2D" uid="uid://c764uwfvvvfrf" path="res://assets/buttonblock/frames/stage2.tres" id="6_alk60"]
-[ext_resource type="Script" uid="uid://omeospoqcgrs" path="res://scenes/stack.gd" id="7_2ml50"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_frbwu"]
 animations = [{
@@ -37,8 +35,3 @@ scale = Vector2(0.34586465, 0.34586465)
 sprite_frames = SubResource("SpriteFrames_frbwu")
 frame = 3
 frame_progress = 0.16851027
-
-[node name="stack" type="Sprite2D" parent="." unique_id=742985021]
-position = Vector2(-518, -394)
-texture = ExtResource("6_alk60")
-script = ExtResource("7_2ml50")

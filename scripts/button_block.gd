@@ -15,31 +15,31 @@ func _ready() -> void:
 
 func on_tower_updated(new_index: int) -> void:
 	if new_index > block_index:
-		if button_animation:
+		if animation:
 			match button_state:
 				ButtonState.FRONT:
-					button_animation.visible = true
+					animation.visible = true
 					sprite.visible = false
-					button_animation.play("turn_left_270")
-					button_animation.animation_finished.connect(
+					animation.play("turn_left_270")
+					animation.animation_finished.connect(
 						func():
 							button_state = ButtonState.LEFT
 							sprite.texture = load("res://assets/buttonblock/frames/left.tres")
 							sprite.visible = true
-							button_animation.visible = false
+							animation.visible = false
 							Events.all_animation_finished.emit()
 					)
 				ButtonState.LEFT:
-					button_animation.visible = true
+					animation.visible = true
 					sprite.visible = false
-					button_animation.play("turn_right")
-					button_animation.animation_finished.connect(
+					animation.play("turn_right")
+					animation.animation_finished.connect(
 						func():
 							button_state = ButtonState.RIGHT
 							sprite.texture = load("res://assets/buttonblock/frames/right.tres")
 							
 							sprite.visible = true
-							button_animation.visible = false
+							animation.visible = false
 							Events.all_animation_finished.emit()
 					)
 				ButtonState.RIGHT:

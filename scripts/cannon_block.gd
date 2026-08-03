@@ -16,19 +16,19 @@ func on_tower_updated(new_index: int) -> void:
 	if new_index > block_index:
 		match cannon_state:
 			CannonState.BASE:
-				print("aim")
 				cannon_state = CannonState.AIMING
-				#if has_node("button_animation"):
-					#$button_animation.visible = true
-					#$button_animation.play("aim")
-					#$button_animation.animation_finished.connect(func():
-						#cannon_state = CannonState.FIRE
-						#$Sprite2D.texture = load("res://assets/cannonblock/frames/cannon_tansform.tres")
-						#$button_animation.visible = false
-				Events.all_animation_finished.emit()
-					#end, CONNECT_ONE_SHOT)
+				if animation:
+					sprite.visible = false
+					animation.visible = true
+					animation.play("eat")
+					animation.animation_finished.connect(func():
+						cannon_state = CannonState.FIRE
+						sprite.texture = load("res://assets/cannonblock/frames/cannon_guy.tres")
+						animation.visible = false
+						sprite.visible = true
+						Events.all_animation_finished.emit()
+					)
 			CannonState.AIMING:
-				print("fire")
 				cannon_state = CannonState.FIRE
 				#$Sprite2D.texture = load("res://assets/cannonblock/frames/cannon_tansform.tres")
 				Events.all_animation_finished.emit()

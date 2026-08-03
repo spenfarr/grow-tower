@@ -11,7 +11,7 @@ const ROUND_UP_TOLERANCE: float = 20.0
 @export var growth_amount: int = 1
 @export var texture_path: String = "res://assets/buttonblock/frame1.tres"
 
-@onready var button_animation: AnimatedSprite2D = $AnimatedSprite2D as AnimatedSprite2D
+@onready var animation: AnimatedSprite2D = $AnimatedSprite2D as AnimatedSprite2D
 @onready var sprite: Sprite2D = $Sprite2D as Sprite2D
 
 var id: int = 0

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://buwuhnnw6hdpf" path="res://scripts/game_controller.gd" id="1_abc123"]
 [ext_resource type="Script" uid="uid://cndo8lg1ol0x2" path="res://scripts/tower_manager.gd" id="2_def456"]
-[ext_resource type="Script" path="res://scripts/ruler.gd" id="3_ruler001"]
+[ext_resource type="Script" uid="uid://dys4vm1r0xox4" path="res://scripts/ruler.gd" id="3_ruler001"]
 
 [node name="Game" type="Node2D" unique_id=870439187]
 script = ExtResource("1_abc123")
@@ -13,7 +13,6 @@ offset_bottom = 648.0
 color = Color(0.12, 0.15, 0.2, 1)
 
 [node name="Ground" type="ColorRect" parent="." unique_id=1495880131]
-offset_left = 0.0
 offset_top = 520.0
 offset_right = 1152.0
 offset_bottom = 648.0
@@ -24,7 +23,6 @@ position = Vector2(576, 100)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=614787833]
 position = Vector2(576, 324)
-current = true
 
 [node name="Ruler" type="Node2D" parent="." unique_id=305817264]
 position = Vector2(24, 0)
@@ -44,10 +42,8 @@ theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
 [node name="Buttons" type="VBoxContainer" parent="UI" unique_id=548064411]
-layout_mode = 2
-anchors_preset = 0
+anchors_preset = 11
 anchor_left = 1.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -220.0
@@ -72,7 +68,7 @@ text = "cannon"
 
 [node name="ResetButton" type="Button" parent="UI" unique_id=614787832]
 custom_minimum_size = Vector2(180, 48)
-anchors_preset = 7
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
