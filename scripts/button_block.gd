@@ -49,6 +49,7 @@ func on_tower_updated(new_index: int) -> void:
 					)
 				VisualState.RIGHT:
 					sprite.texture = load("res://assets/buttonblock/frames/stage2.tres")
+					sprite.offset = Vector2(-50,0)
 					if tower_manager != null and block_index >= 0:
 						tower_manager.notify_block_height_changed(block_index)
 				_:
