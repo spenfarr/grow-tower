@@ -3,6 +3,9 @@ class_name Block
 
 signal interacted(with_block: Block)
 
+const STANDARD_BLOCK_HEIGHT: float = 132.0
+const ROUND_UP_TOLERANCE: float = 20.0
+
 @export var block_name: String = "Block"
 @export var block_color: Color = Color.WHITE
 @export var growth_amount: int = 1
@@ -58,7 +61,9 @@ func get_visual_height() -> float:
 	if has_node("Sprite2D"):
 		var sprite: Sprite2D = $Sprite2D
 		if sprite.texture != null:
-			return sprite.texture.get_size().y * sprite.scale.y
+			var raw_height: float = sprite.texture.get_size().y * sprite.scale.y
+			# Round up to the next unit if within ROUND_UP_TOLERANCE px of it.
+			return floor((raw_height + ROUND_UP_TOLERANCE) / STANDARD_BLOCK_HEIGHT) * STANDARD_BLOCK_HEIGHT
 	return 32.0
 
 func _on_area_entered(area: Area2D) -> void:
