@@ -12,6 +12,7 @@ var visual_state: VisualState = VisualState.FRONT
 
 @onready var button_animation: AnimatedSprite2D = $ButtonAnimation as AnimatedSprite2D
 @onready var sprite: Sprite2D = $Sprite2D as Sprite2D
+@onready var events: Node = get_node("/root/Events")
 
 func _ready() -> void:
 	super._ready()
@@ -31,7 +32,7 @@ func on_tower_updated(new_index: int) -> void:
 							sprite.texture = load("res://assets/buttonblock/frames/left.tres")
 							sprite.visible = true
 							button_animation.visible = false
-							Events.all_animation_finished.emit()
+							events.all_animation_finished.emit()
 					)
 				VisualState.LEFT:
 					button_animation.visible = true
@@ -44,7 +45,7 @@ func on_tower_updated(new_index: int) -> void:
 							
 							sprite.visible = true
 							button_animation.visible = false
-							Events.all_animation_finished.emit()
+							events.all_animation_finished.emit()
 					)
 				VisualState.RIGHT:
 					sprite.texture = load("res://assets/buttonblock/frames/stage2.tres")
@@ -54,5 +55,5 @@ func on_tower_updated(new_index: int) -> void:
 					print("Button Oopsy")
 				
 	if new_index == block_index:
-		Events.all_animation_finished.emit()
+		events.all_animation_finished.emit()
 			

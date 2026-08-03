@@ -2,8 +2,10 @@ extends Node2D
 
 @onready var tower_container: Node2D = $TowerContainer
 @onready var tower_manager: TowerManager = $TowerManager
-@onready var red_button: Button = $UI/MarginContainer/Buttons/RedButton
-@onready var cannon_button: Button = $UI/MarginContainer/Buttons/CannonButton
+@onready var red_button: Button = $UI/Buttons/RedButton
+@onready var cannon_button: Button = $UI/Buttons/CannonButton
+@onready var reset_button: Button = $UI/ResetButton
+@onready var events: Node = get_node("/root/Events")
 
 var current_sequence: Array[String] = []
 
@@ -15,7 +17,8 @@ const BLOCK_DEFINITIONS: Array[Dictionary] = [
 func _ready() -> void:
 	red_button.pressed.connect(_on_block_button_pressed.bind("red_button"))
 	cannon_button.pressed.connect(_on_block_button_pressed.bind("cannon"))
-	Events.all_animation_finished.connect(_on_all_animations_finished)
+	reset_button.pressed.connect(_on_reset_button_pressed)
+	events.all_animation_finished.connect(_on_all_animations_finished)
 	set_block_buttons_disabled(false)
 	# Give the tower manager access to the container so it can reposition blocks
 	tower_manager.tower_container = tower_container
@@ -53,6 +56,19 @@ func spawn_block(block_name: String) -> void:
 	current_sequence.append(block_name)
 
 func _on_all_animations_finished() -> void:
+	set_block_buttons_disabled(false)
+
+func _on_reset_button_pressed() -> void:
+	reset_game()
+
+func reset_game() -> void:
+	for child in tower_container.get_children():
+		child.queue_free()
+
+	tower_manager.blocks.clear()
+	tower_manager.interaction_pairs.clear()
+	tower_manager.stack_height = 0.0
+	current_sequence.clear()
 	set_block_buttons_disabled(false)
 
 func set_block_buttons_disabled(disabled: bool) -> void:
