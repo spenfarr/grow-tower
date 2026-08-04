@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://c6k3ysakt2mwa"]
+
+[ext_resource type="Texture2D" uid="uid://c2i8cr0tu2uj1" path="res://assets/groundblock/raw_art/Ground.png" id="1_g1svv"]
+
+[resource]
+atlas = ExtResource("1_g1svv")
+region = Rect2(1506, 1978, 355, 531)
