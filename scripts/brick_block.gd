@@ -54,12 +54,11 @@ var is_transforming: bool = false
 func _ready() -> void:
 	super._ready()
 
-func on_tower_updated(new_index: int) -> void:
-	if new_index > block_index and not has_transformed:
-		has_transformed = true
-		_play_transform_sequence()
-	elif new_index == block_index:
-		Events.all_animation_finished.emit()
+func play_step() -> void:
+	if has_transformed:
+		return
+	has_transformed = true
+	await _play_transform_sequence()
 
 func _process(_delta: float) -> void:
 	if is_transforming:
@@ -150,7 +149,7 @@ func _play_transform_sequence() -> void:
 	tween.tween_interval(SETTLE_DURATION)
 	tween.tween_callback(func(): sprite.texture = load("res://assets/brickblock/frames/base_brick.tres"))
 	tween.tween_callback(func(): sprite.flip_v = true)
-	tween.tween_callback(func(): Events.all_animation_finished.emit())
+	await tween.finished
 
 func _show_split_sprites() -> void:
 	sprite.visible = false

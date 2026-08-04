@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://do28t20nvb2ew" path="res://assets/buttonblock/frames/front.tres" id="4_redicon"]
 [ext_resource type="Texture2D" uid="uid://du4bl4a3bx0ye" path="res://assets/cannonblock/frames/cannon_base.tres" id="5_cannonicon"]
 [ext_resource type="Texture2D" uid="uid://cyfuecrl8v2f2" path="res://assets/brickblock/frames/base_brick.tres" id="6_brickicon"]
+[ext_resource type="Texture2D" uid="uid://smhfjk2u86hk" path="res://assets/groundblock/frames/base_ground.tres" id="7_groundicon"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_normal"]
 content_margin_left = 16.0
@@ -160,6 +161,19 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_disabled")
 icon = ExtResource("6_brickicon")
+icon_alignment = 1
+expand_icon = true
+
+[node name="GroundButton" type="Button" parent="UI/Buttons"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.15, 0.15, 0.18, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_disabled")
+icon = ExtResource("7_groundicon")
 icon_alignment = 1
 expand_icon = true
 
