@@ -164,7 +164,7 @@ icon = ExtResource("6_brickicon")
 icon_alignment = 1
 expand_icon = true
 
-[node name="GroundButton" type="Button" parent="UI/Buttons"]
+[node name="GroundButton" type="Button" parent="UI/Buttons" unique_id=1221482894]
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
 size_flags_horizontal = 4

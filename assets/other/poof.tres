@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://u7dubhcsjdyy"]
+
+[ext_resource type="Texture2D" uid="uid://b6j43ws21y3by" path="res://assets/other/raw/Poof.png" id="1_th8t6"]
+
+[resource]
+atlas = ExtResource("1_th8t6")
+region = Rect2(811.25696, 772.99854, 581.3944, 457.38513)
