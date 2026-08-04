@@ -1,13 +1,12 @@
 extends Node
 class_name TowerManager
 
-signal tower_updated(new_index: int)
-
 var blocks: Array[Block] = []
 var interaction_pairs: Array[Dictionary] = []
 var ground_y: float = 440.0
 var stack_height: float = 0.0
 var tower_container: Node2D = null
+var chain_queue: Array[Block] = []
 
 func add_block(block: Block) -> void:
 	if block == null:
@@ -15,7 +14,6 @@ func add_block(block: Block) -> void:
 
 	blocks.append(block)
 	stack_height += block.get_visual_height()
-	tower_updated.emit(blocks.size() - 1)
 
 func get_next_spawn_y(block_height: float) -> float:
 	return ground_y - (stack_height + block_height / 2.0)
@@ -40,7 +38,22 @@ func register_interaction(source: Block, target: Block) -> void:
 		return
 
 	interaction_pairs.append({"source": source, "target": target})
-	tower_updated.emit(blocks.size() - 1)
 
 func get_max_height() -> int:
 	return blocks.size()
+
+func run_chain(chain: Array[Block]) -> void:
+	# Plays each block's next animation step in order, waiting for one to
+	# finish before starting the next. A block can appear more than once
+	# (e.g. [a, c, b, a]) since each call just advances that block's own
+	# internal state to whatever comes next. Blocks can call queue_next()
+	# during their own play_step() to insert a block to run immediately
+	# after them, ahead of whatever else is already queued.
+	chain_queue = chain
+	while not chain_queue.is_empty():
+		var block: Block = chain_queue.pop_front()
+		await block.play_step()
+	Events.all_animation_finished.emit()
+
+func queue_next(block: Block) -> void:
+	chain_queue.push_front(block)

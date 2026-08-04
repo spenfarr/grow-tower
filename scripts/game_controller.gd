@@ -78,9 +78,12 @@ func spawn_block(block_name: String) -> void:
 
 	tower_container.add_child(block)
 
+	# Every block already in the tower reacts to this new one landing above it.
+	var reacting_blocks: Array[Block] = tower_manager.blocks.duplicate()
 	tower_manager.add_block(block)
 	current_sequence.append(block_name)
 	_update_camera_for_tower_height()
+	tower_manager.run_chain(reacting_blocks)
 
 func _on_all_animations_finished() -> void:
 	set_block_buttons_disabled(false)

@@ -28,51 +28,39 @@ func get_visual_height() -> float:
 			height += quantize_height(cap.texture.get_size().y * cap.scale.y)
 	return height
 
-func on_tower_updated(new_index: int) -> void:
-	if new_index > block_index:
-		if animation:
-			match button_state:
-				ButtonState.FRONT:
-					animation.visible = true
-					sprite.visible = false
-					animation.play("turn_left_270")
-					animation.animation_finished.connect(
-						func():
-							button_state = ButtonState.LEFT
-							sprite.texture = load("res://assets/buttonblock/frames/left.tres")
-							sprite.visible = true
-							animation.visible = false
-							Events.all_animation_finished.emit()
-					)
-				ButtonState.LEFT:
-					animation.visible = true
-					sprite.visible = false
-					animation.play("turn_right")
-					animation.animation_finished.connect(
-						func():
-							button_state = ButtonState.RIGHT
-							sprite.texture = load("res://assets/buttonblock/frames/right.tres")
-
-							sprite.visible = true
-							animation.visible = false
-							Events.all_animation_finished.emit()
-					)
-				ButtonState.RIGHT:
-					sprite.texture = load("res://assets/buttonblock/frames/stage2.tres")
-					button_state = ButtonState.EXTENDED
-					sprite.offset = Vector2(-50,0)
-					# Make the cap part of the block's footprint before recalculating
-					# stack heights, so later blocks reserve space above it too.
-					top_sprite.visible = true
-					if tower_manager != null and block_index >= 0:
-						tower_manager.notify_block_height_changed(block_index)
-					_grow_into_stage2()
-				_:
-					print("Button Oopsy")
-					Events.all_animation_finished.emit()
-
-	if new_index == block_index:
-		Events.all_animation_finished.emit()
+func play_step() -> void:
+	if animation:
+		match button_state:
+			ButtonState.FRONT:
+				animation.visible = true
+				sprite.visible = false
+				animation.play("turn_left_270")
+				await animation.animation_finished
+				button_state = ButtonState.LEFT
+				sprite.texture = load("res://assets/buttonblock/frames/left.tres")
+				sprite.visible = true
+				animation.visible = false
+			ButtonState.LEFT:
+				animation.visible = true
+				sprite.visible = false
+				animation.play("turn_right")
+				await animation.animation_finished
+				button_state = ButtonState.RIGHT
+				sprite.texture = load("res://assets/buttonblock/frames/right.tres")
+				sprite.visible = true
+				animation.visible = false
+			ButtonState.RIGHT:
+				sprite.texture = load("res://assets/buttonblock/frames/stage2.tres")
+				button_state = ButtonState.EXTENDED
+				sprite.offset = Vector2(-50,0)
+				# Make the cap part of the block's footprint before recalculating
+				# stack heights, so later blocks reserve space above it too.
+				top_sprite.visible = true
+				if tower_manager != null and block_index >= 0:
+					tower_manager.notify_block_height_changed(block_index)
+				await _grow_into_stage2()
+			_:
+				print("Button Oopsy")
 
 func _grow_into_stage2() -> void:
 	# Pop the grown sprite up from a squashed sliver to its full height, anchored
@@ -99,7 +87,7 @@ func _grow_into_stage2() -> void:
 		target_scale_y,
 		GROW_ANIMATION_DURATION
 	)
-	tween.finished.connect(Events.all_animation_finished.emit)
+	await tween.finished
 
 func _on_grow_step(current_scale_y: float, texture_height: float, reserved_bottom_y: float, cap_half_height: float) -> void:
 	sprite.scale.y = current_scale_y

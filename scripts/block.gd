@@ -24,10 +24,6 @@ func _ready() -> void:
 	update_visuals()
 	area_entered.connect(_on_area_entered)
 
-	#var tower_manager: TowerManager = %TowerManager as TowerManager
-	if tower_manager:
-		tower_manager.tower_updated.connect(_on_tower_updated)
-
 func setup(name_value: String, color_value: Color, growth_value: int = 1, texture_value: String = "res://assets/buttonblock/frame1.tres") -> void:
 	block_name = name_value
 	block_color = color_value
@@ -75,12 +71,7 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is Block and area != self:
 		trigger_interaction(area as Block)
 
-func _on_tower_updated(new_index: int) -> void:
-	on_tower_updated(new_index)
-
-func on_tower_updated(new_index: int) -> void:
-	# Override in subclasses for per-block reaction to tower updates.
-	# Plain blocks have nothing to react to; still signal completion for their
-	# own placement so the UI's block-placement lock releases.
-	if new_index == block_index:
-		Events.all_animation_finished.emit()
+func play_step() -> void:
+	# Override in subclasses to play this block's next animation step.
+	# Used by TowerManager.run_chain() to sequence blocks explicitly.
+	pass
