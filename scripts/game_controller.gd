@@ -4,6 +4,7 @@ extends Node2D
 @onready var tower_manager: TowerManager = $TowerManager
 @onready var red_button: Button = $UI/Buttons/RedButton
 @onready var cannon_button: Button = $UI/Buttons/CannonButton
+@onready var brick_button: Button = $UI/Buttons/BrickButton
 @onready var reset_button: Button = $UI/ResetButton
 @onready var camera: Camera2D = $Camera2D
 @onready var background: ColorRect = $Background
@@ -19,11 +20,13 @@ var camera_pan_y: float = 0.0
 const BLOCK_DEFINITIONS: Array[Dictionary] = [
 	{"name": "red_button", "growth": 1, "texture": "res://assets/buttonblock/frames/front.tres"},
 	{"name": "cannon", "growth": 2, "texture": "res://assets/cannonblock/frames/cannon_base.tres"},
+	{"name": "brick", "growth": 1, "texture": "res://assets/brickblock/frames/base_brick.tres"},
 ]
 
 func _ready() -> void:
 	red_button.pressed.connect(_on_block_button_pressed.bind("red_button"))
 	cannon_button.pressed.connect(_on_block_button_pressed.bind("cannon"))
+	brick_button.pressed.connect(_on_block_button_pressed.bind("brick"))
 	reset_button.pressed.connect(_on_reset_button_pressed)
 	events.all_animation_finished.connect(_on_all_animations_finished)
 	camera.make_current()
@@ -44,7 +47,7 @@ func _input(event: InputEvent) -> void:
 			pan_camera(SCROLL_STEP)
 
 func _on_block_button_pressed(block_name: String) -> void:
-	if red_button.disabled or cannon_button.disabled:
+	if red_button.disabled or cannon_button.disabled or brick_button.disabled:
 		return
 	spawn_block(block_name)
 
@@ -127,6 +130,7 @@ func reset_game() -> void:
 func set_block_buttons_disabled(disabled: bool) -> void:
 	red_button.disabled = disabled
 	cannon_button.disabled = disabled
+	brick_button.disabled = disabled
 
 func get_block_definition(block_name: String) -> Dictionary:
 	for definition in BLOCK_DEFINITIONS:

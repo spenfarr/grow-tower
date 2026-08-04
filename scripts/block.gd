@@ -80,4 +80,7 @@ func _on_tower_updated(new_index: int) -> void:
 
 func on_tower_updated(new_index: int) -> void:
 	# Override in subclasses for per-block reaction to tower updates.
-	pass
+	# Plain blocks have nothing to react to; still signal completion for their
+	# own placement so the UI's block-placement lock releases.
+	if new_index == block_index:
+		Events.all_animation_finished.emit()

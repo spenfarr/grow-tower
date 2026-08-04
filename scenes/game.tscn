@@ -66,6 +66,11 @@ custom_minimum_size = Vector2(180, 48)
 layout_mode = 2
 text = "cannon"
 
+[node name="BrickButton" type="Button" parent="UI/Buttons" unique_id=614787834]
+custom_minimum_size = Vector2(180, 48)
+layout_mode = 2
+text = "brick"
+
 [node name="ResetButton" type="Button" parent="UI" unique_id=614787832]
 custom_minimum_size = Vector2(180, 48)
 anchors_preset = 3
