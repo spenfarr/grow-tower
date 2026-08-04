@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bqx7lsvwk3pc7" path="res://assets/cannonblock/frames/mouth_closing.tres" id="4_5pmpx"]
 [ext_resource type="Texture2D" uid="uid://c461lsad7hi42" path="res://assets/cannonblock/frames/mouth_open.tres" id="4_mno345"]
 [ext_resource type="Texture2D" uid="uid://ct6oawmroj7j6" path="res://assets/cannonblock/frames/mouth_closed.tres" id="5_6jqyk"]
+[ext_resource type="Script" uid="uid://njfi3nw5cady" path="res://scripts/cannon_arm.gd" id="6_armscript"]
+[ext_resource type="Texture2D" uid="uid://c0arm0hand002" path="res://assets/cannonblock/frames/arm_hand.tres" id="7_armhand2"]
+[ext_resource type="Texture2D" uid="uid://domsoqohgvgku" path="res://assets/cannonblock/frames/arm_no_hand.tres" id="9_1ljp3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1"]
 animations = [{
@@ -34,9 +37,11 @@ animations = [{
 }]
 
 [node name="CannonBlock" type="Area2D" unique_id=1742133317]
+visibility_layer = 3
 script = ExtResource("1_abc123")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=307858642]
+z_index = 1
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_def456")
 
@@ -45,3 +50,18 @@ visible = false
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_1")
 animation = &"eat"
+
+[node name="ArmBase" type="Sprite2D" parent="." unique_id=1829375027]
+visible = false
+position = Vector2(58, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_1ljp3")
+
+[node name="Arm" type="Line2D" parent="ArmBase" unique_id=892034571]
+position = Vector2(124, 0)
+script = ExtResource("6_armscript")
+
+[node name="Hand" type="Sprite2D" parent="ArmBase/Arm" unique_id=892034574]
+texture = ExtResource("7_armhand2")
+centered = false
+offset = Vector2(0, -52.5)
