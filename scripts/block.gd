@@ -64,10 +64,12 @@ func get_visual_height() -> float:
 	if has_node("Sprite2D"):
 		var sprite: Sprite2D = $Sprite2D
 		if sprite.texture != null:
-			var raw_height: float = sprite.texture.get_size().y * sprite.scale.y
-			# Round up to the next unit if within ROUND_UP_TOLERANCE px of it.
-			return floor((raw_height + ROUND_UP_TOLERANCE) / STANDARD_BLOCK_HEIGHT) * STANDARD_BLOCK_HEIGHT
+			return quantize_height(sprite.texture.get_size().y * sprite.scale.y)
 	return 32.0
+
+func quantize_height(raw_height: float) -> float:
+	# Round up to the next unit if within ROUND_UP_TOLERANCE px of it.
+	return floor((raw_height + ROUND_UP_TOLERANCE) / STANDARD_BLOCK_HEIGHT) * STANDARD_BLOCK_HEIGHT
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is Block and area != self:
