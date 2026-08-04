@@ -65,6 +65,9 @@ func spawn_block(block_name: String) -> void:
 	elif block_name == "cannon":
 		block_scene = preload("res://scenes/cannon_block.tscn")
 		block = block_scene.instantiate() as Block
+	elif block_name == "brick":
+		block_scene = preload("res://scenes/brick_block.tscn")
+		block = block_scene.instantiate() as Block
 	else:
 		block_scene = preload("res://scenes/block.tscn")
 		block = block_scene.instantiate() as Block

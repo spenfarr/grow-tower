@@ -1,0 +1,49 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/brick_block.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cyfuecrl8v2f2" path="res://assets/brickblock/frames/base_brick.tres" id="2_base"]
+[ext_resource type="Texture2D" uid="uid://dba5hhy7jktj" path="res://assets/brickblock/frames/brick_face_only.tres" id="3_head"]
+[ext_resource type="Texture2D" uid="uid://cpx5x10mrf7yc" path="res://assets/brickblock/frames/robot_arm_left.tres" id="4_leftarm"]
+[ext_resource type="Texture2D" uid="uid://1fj1jh2etf7a" path="res://assets/brickblock/frames/robot_arm_right.tres" id="5_rightarm"]
+[ext_resource type="Texture2D" uid="uid://ccsmhetjw0mno" path="res://assets/brickblock/frames/robot_arm_connector.tres" id="6_connector"]
+
+[node name="BrickBlock" type="Area2D"]
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_base")
+
+[node name="LeftConnector" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_connector")
+
+[node name="RightConnector" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_connector")
+
+[node name="LeftArmPivot" type="Node2D" parent="."]
+position = Vector2(-16.25, -55)
+
+[node name="LeftArmSprite" type="Sprite2D" parent="LeftArmPivot"]
+visible = false
+position = Vector2(-15, 55)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_leftarm")
+
+[node name="RightArmPivot" type="Node2D" parent="."]
+position = Vector2(18.75, -55)
+
+[node name="RightArmSprite" type="Sprite2D" parent="RightArmPivot"]
+visible = false
+position = Vector2(15, 55)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_rightarm")
+
+[node name="HeadSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 41)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_head")
