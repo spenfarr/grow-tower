@@ -11,12 +11,15 @@ extends Node2D
 @onready var background: ColorRect = $Background
 @onready var ground: ColorRect = $Ground
 @onready var ruler: Ruler = $Ruler
+@onready var win_label: Label = $UI/WinLabel
 @onready var events: Node = get_node("/root/Events")
 
 var current_sequence: Array[String] = []
 const MAX_SCROLLABLE_BLOCKS: int = 50
 const SCROLL_STEP: float = 80.0
+const WIN_HEIGHT_UNITS: float = 23.0
 var camera_pan_y: float = 0.0
+var game_won: bool = false
 
 const BLOCK_DEFINITIONS: Array[Dictionary] = [
 	{"name": "red_button", "growth": 1, "texture": "res://assets/buttonblock/frames/front.tres"},
@@ -95,7 +98,18 @@ func spawn_block(block_name: String) -> void:
 	tower_manager.run_chain(reacting_blocks)
 
 func _on_all_animations_finished() -> void:
-	set_block_buttons_disabled(false)
+	if check_win_condition():
+		win_game()
+	else:
+		set_block_buttons_disabled(false)
+
+func check_win_condition() -> bool:
+	return tower_manager.stack_height / Block.STANDARD_BLOCK_HEIGHT >= WIN_HEIGHT_UNITS
+
+func win_game() -> void:
+	game_won = true
+	win_label.visible = true
+	set_block_buttons_disabled(true)
 
 func _on_reset_button_pressed() -> void:
 	reset_game()
@@ -137,6 +151,8 @@ func reset_game() -> void:
 	current_sequence.clear()
 	camera_pan_y = 0.0
 	camera.position.y = get_base_camera_y()
+	game_won = false
+	win_label.visible = false
 	set_block_buttons_disabled(false)
 
 func set_block_buttons_disabled(disabled: bool) -> void:
