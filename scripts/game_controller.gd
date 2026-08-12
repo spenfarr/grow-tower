@@ -107,7 +107,7 @@ func spawn_block(block_name: String) -> void:
 func _on_all_animations_finished() -> void:
 	if check_win_condition():
 		win_game()
-	elif tower_manager.blocks.size() >= LOSE_BLOCK_COUNT:
+	elif tower_manager.blocks.size() >= LOSE_BLOCK_COUNT && false: # && false is to allow testing
 		lose_game()
 	else:
 		refresh_block_buttons()
@@ -121,9 +121,6 @@ func win_game() -> void:
 	set_block_buttons_disabled(true)
 
 func lose_game() -> void:
-	# temp disabled for testing
-	if true:
-		return
 	game_lost = true
 	lose_label.visible = true
 	set_block_buttons_disabled(true)

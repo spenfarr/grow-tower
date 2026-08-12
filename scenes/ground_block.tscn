@@ -1,13 +1,13 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bwmd0v0etryk0"]
 
-[ext_resource type="Script" path="res://scripts/ground_block.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://ck0fyqr7whcqd" path="res://scripts/ground_block.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://smhfjk2u86hk" path="res://assets/groundblock/frames/base_ground.tres" id="2_base"]
 
-[node name="GroundBlock" type="Area2D"]
+[node name="GroundBlock" type="Area2D" unique_id=151257382]
 script = ExtResource("1_script")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=77737505]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_base")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1450436974]
