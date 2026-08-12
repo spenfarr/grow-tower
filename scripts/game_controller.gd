@@ -12,14 +12,17 @@ extends Node2D
 @onready var ground: ColorRect = $Ground
 @onready var ruler: Ruler = $Ruler
 @onready var win_label: Label = $UI/WinLabel
+@onready var lose_label: Label = $UI/LoseLabel
 @onready var events: Node = get_node("/root/Events")
 
 var current_sequence: Array[String] = []
 const MAX_SCROLLABLE_BLOCKS: int = 50
 const SCROLL_STEP: float = 80.0
 const WIN_HEIGHT_UNITS: float = 23.0
+const LOSE_BLOCK_COUNT: int = 5
 var camera_pan_y: float = 0.0
 var game_won: bool = false
+var game_lost: bool = false
 
 const BLOCK_DEFINITIONS: Array[Dictionary] = [
 	{"name": "red_button", "growth": 1, "texture": "res://assets/buttonblock/frames/front.tres"},
@@ -100,6 +103,8 @@ func spawn_block(block_name: String) -> void:
 func _on_all_animations_finished() -> void:
 	if check_win_condition():
 		win_game()
+	elif tower_manager.blocks.size() >= LOSE_BLOCK_COUNT:
+		lose_game()
 	else:
 		set_block_buttons_disabled(false)
 
@@ -109,6 +114,14 @@ func check_win_condition() -> bool:
 func win_game() -> void:
 	game_won = true
 	win_label.visible = true
+	set_block_buttons_disabled(true)
+
+func lose_game() -> void:
+	# temp disabled for testing
+	if true:
+		return
+	game_lost = true
+	lose_label.visible = true
 	set_block_buttons_disabled(true)
 
 func _on_reset_button_pressed() -> void:
@@ -152,7 +165,9 @@ func reset_game() -> void:
 	camera_pan_y = 0.0
 	camera.position.y = get_base_camera_y()
 	game_won = false
+	game_lost = false
 	win_label.visible = false
+	lose_label.visible = false
 	set_block_buttons_disabled(false)
 
 func set_block_buttons_disabled(disabled: bool) -> void:
