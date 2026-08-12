@@ -23,6 +23,7 @@ const LOSE_BLOCK_COUNT: int = 5
 var camera_pan_y: float = 0.0
 var game_won: bool = false
 var game_lost: bool = false
+var used_block_types: Array[String] = []
 
 const BLOCK_DEFINITIONS: Array[Dictionary] = [
 	{"name": "red_button", "growth": 1, "texture": "res://assets/buttonblock/frames/front.tres"},
@@ -56,8 +57,11 @@ func _input(event: InputEvent) -> void:
 			pan_camera(SCROLL_STEP)
 
 func _on_block_button_pressed(block_name: String) -> void:
-	if red_button.disabled or cannon_button.disabled or brick_button.disabled or ground_button.disabled:
-		return
+	# temp disabled for testing - each button only usable once
+	if false:
+		if block_name in used_block_types:
+			return
+		used_block_types.append(block_name)
 	spawn_block(block_name)
 
 func spawn_block(block_name: String) -> void:
@@ -106,7 +110,7 @@ func _on_all_animations_finished() -> void:
 	elif tower_manager.blocks.size() >= LOSE_BLOCK_COUNT:
 		lose_game()
 	else:
-		set_block_buttons_disabled(false)
+		refresh_block_buttons()
 
 func check_win_condition() -> bool:
 	return tower_manager.stack_height / Block.STANDARD_BLOCK_HEIGHT >= WIN_HEIGHT_UNITS
@@ -166,6 +170,7 @@ func reset_game() -> void:
 	camera.position.y = get_base_camera_y()
 	game_won = false
 	game_lost = false
+	used_block_types.clear()
 	win_label.visible = false
 	lose_label.visible = false
 	set_block_buttons_disabled(false)
@@ -175,6 +180,14 @@ func set_block_buttons_disabled(disabled: bool) -> void:
 	cannon_button.disabled = disabled
 	brick_button.disabled = disabled
 	ground_button.disabled = disabled
+
+func refresh_block_buttons() -> void:
+	# Re-enable buttons after an animation chain, except ones already used
+	# this game -- each block type can only be placed once.
+	red_button.disabled = "red_button" in used_block_types
+	cannon_button.disabled = "cannon" in used_block_types
+	brick_button.disabled = "brick" in used_block_types
+	ground_button.disabled = "ground" in used_block_types
 
 func get_block_definition(block_name: String) -> Dictionary:
 	for definition in BLOCK_DEFINITIONS:
